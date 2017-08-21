@@ -39,4 +39,3 @@ socket.connect({
 });
 
 ```
-client = new PahoMQTT.Client(location.hostname, Number(location.port), "clientId");
