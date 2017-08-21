@@ -4,7 +4,7 @@ IntoYun Websocket 接入客户端
 #使用例子(ES6)
 ```javascript
 import IntoYunSocket from 'intoyun-ws-client'
-import Message from 'intoyun-ws/client/message'
+import Message from 'intoyun-ws-client/lib/message'
 
 const socket = new IntoYunSocket('ws://iot.intoyun.com:8090/sub');
 
