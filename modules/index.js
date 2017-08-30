@@ -129,8 +129,8 @@ WsClient.prototype._process_queue = function () {
 WsClient.prototype._on_socket_open = function () {
   // console.log('_on_socket_open')
   const payloadMessage = new Message(JSON.stringify({
-    id: this.connectOptions.password,
-    accessToken: this.connectOptions.userName
+    id: this.connectOptions.userName,
+    accessToken: this.connectOptions.password
   }))
 
   const wireMessage = new WireMessage(MESSAGE_TYPE.CONNECT, { payloadMessage })
