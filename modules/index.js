@@ -140,8 +140,11 @@ WsClient.prototype._on_socket_open = function () {
 WsClient.prototype._on_socket_message = function (event) {
   let data = event.data
 
+  if (this.connectOptions.verbose) {
   // this.receivePinger.reset()
-  // console.log(`[RECEIVED] ${UTF8ToHex(data)}`, new Uint8Array(data))
+    console.log(`[RECEIVED] ${UTF8ToHex(data)}`, new Uint8Array(data))
+  }
+
   const messages = this._deframeMessages(data)
   for (let i = 0; i < messages.length; i += 1) {
     this._handleMessage(messages[i])
@@ -237,8 +240,10 @@ WsClient.prototype._socket_send = function (wireMessage) {
   this.socket.send(buffer)
   this.sendPinger.reset()
 
-  // const bytes = new Uint8Array(buffer)
-  // console.log(`[SEND] ${UTF8ToHex(bytes)}`, bytes)
+  if (this.connectOptions.verbose) {
+    const bytes = new Uint8Array(buffer)
+    console.log(`[SEND] ${UTF8ToHex(bytes)}`, bytes)
+  }
 }
 
 WsClient.prototype._disconnected = function (errorCode, errorText) {
