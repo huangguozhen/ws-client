@@ -69,7 +69,9 @@ export function decodeMessage (input, pos) {
   if (endPos > input.length) return [null, startingPos]
 
   const wireMessage = new WireMessage(type)
-  if (type === MESSAGE_TYPE.SEND_SMS) {
+
+  // 除了AUTH，BEAT都需要messageIdentifier
+  if (type > 3 && type < 12) {
     wireMessage.messageIdentifier = readUint16(input, pos)
     pos += 2
   }
