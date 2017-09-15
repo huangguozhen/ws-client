@@ -5,7 +5,7 @@
  *    Guozhen Huang
  *******************************************************************************/
 /* eslint no-unused-expressions: 0 */
-import { ERROR, MESSAGE_TYPE, format, scope } from './utils'
+import { ERROR, MESSAGE_TYPE, format, scope, UTF8ToHex } from './utils'
 import Message from './message'
 import WireMessage, { decodeMessage } from './wiremessage'
 import Timeout from './timeout'
@@ -70,7 +70,8 @@ WsClient.prototype.send = function (type, message) {
   const wireMessage = new WireMessage(type)
   wireMessage.payloadMessage = message
 
-  if (type === MESSAGE_TYPE.SEND_SMS) {
+  // 除了AUTH，BEAT都需要messageIdentifier
+  if (type > 3 && type < 12) {
     wireMessage.messageIdentifier = this._message_identifier++
     if (this._message_identifier === this.maxMessageIdentifier) {
       this._message_identifier = 1

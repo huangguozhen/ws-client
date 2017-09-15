@@ -1,6 +1,6 @@
 {
   "name": "intoyun-ws-client",
-  "version": "0.1.1",
+  "version": "0.1.3",
   "description": "IntoYun Websocket接入客户端",
   "main": "lib/index",
   "module": "es/index",
